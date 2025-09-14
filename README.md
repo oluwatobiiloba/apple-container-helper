@@ -111,5 +111,4 @@ Access these commands through the Command Palette (`Cmd+Shift+P`):
 
 Initial release of Apple Container Helper with comprehensive container and image management features.
 
----
 
