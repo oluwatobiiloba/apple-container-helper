@@ -6,9 +6,14 @@
   "engines": {
     "vscode": "^1.104.0"
   },
+  "publisher": "OluwatobilobaAremu",
   "categories": [
     "Other"
   ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/oluwatobiiloba/apple-container-helper.git"
+  },
   "activationEvents": [
     "onStartupFinished"
   ],
