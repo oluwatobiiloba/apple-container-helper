@@ -1,0 +1,302 @@
+{
+  "name": "apple-container-helper",
+  "displayName": "apple-container-helper",
+  "description": "Helper tool to manage apple containers within vscode",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.104.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./dist/extension.js",
+  "contributes": {
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "containerView",
+          "title": "Apple Containers",
+          "icon": "$(server-environment)"
+        }
+      ]
+    },
+    "views": {
+      "explorer": [
+        {
+          "id": "containerExplorer",
+          "name": "Apple Containers",
+          "when": "config.apple-container-helper.showInExplorer != false",
+          "icon": "$(server-environment)"
+        }
+      ],
+      "containerView": [
+        {
+          "id": "containerExplorer",
+          "name": "Containers & Images",
+          "icon": "$(server-environment)"
+        }
+      ]
+    },
+    "commands": [
+      {
+        "command": "apple-container-helper.refreshContainers",
+        "title": "Refresh",
+        "icon": "$(refresh)"
+      },
+      {
+        "command": "apple-container-helper.refreshImages",
+        "title": "Refresh Images",
+        "icon": "$(refresh)"
+      },
+      {
+        "command": "apple-container-helper.pruneImages",
+        "title": "Prune Images",
+        "icon": "$(trash)"
+      },
+      {
+        "command": "apple-container-helper.toggleShowAllContainers",
+        "title": "Show All Containers",
+        "icon": "$(eye)"
+      },
+      {
+        "command": "apple-container-helper.startContainer",
+        "title": "Start Container",
+        "icon": "$(play)"
+      },
+      {
+        "command": "apple-container-helper.stopContainer",
+        "title": "Stop Container",
+        "icon": "$(debug-stop)"
+      },
+      {
+        "command": "apple-container-helper.removeContainer",
+        "title": "Remove Container",
+        "icon": "$(trash)"
+      },
+      {
+        "command": "apple-container-helper.forceRemoveContainer",
+        "title": "Force Remove Container",
+        "icon": "$(close)"
+      },
+      {
+        "command": "apple-container-helper.inspectContainer",
+        "title": "Inspect Container",
+        "icon": "$(search)"
+      },
+      {
+        "command": "apple-container-helper.containerLogs",
+        "title": "View Logs",
+        "icon": "$(output)"
+      },
+      {
+        "command": "apple-container-helper.execInContainer",
+        "title": "Execute Command",
+        "icon": "$(terminal)"
+      },
+      {
+        "command": "apple-container-helper.removeImage",
+        "title": "Remove Image",
+        "icon": "$(trash)"
+      },
+      {
+        "command": "apple-container-helper.inspectImage",
+        "title": "Inspect Image",
+        "icon": "$(search)"
+      },
+      {
+        "command": "apple-container-helper.runFromImage",
+        "title": "Run Container",
+        "icon": "$(play)"
+      },
+      {
+        "command": "apple-container-helper.pullImage",
+        "title": "Pull Image",
+        "icon": "$(cloud-download)"
+      },
+      {
+        "command": "apple-container-helper.buildImage",
+        "title": "Build Image",
+        "icon": "$(tools)"
+      },
+      {
+        "command": "apple-container-helper.advancedRun",
+        "title": "Advanced Run",
+        "icon": "$(settings-gear)"
+      },
+      {
+        "command": "apple-container-helper.advancedRunFromImage",
+        "title": "Advanced Run",
+        "icon": "$(settings-gear)"
+      },
+      {
+        "command": "apple-container-helper.showContainerDetails",
+        "title": "Show Details",
+        "icon": "$(info)"
+      },
+      {
+        "command": "apple-container-helper.copyToClipboard",
+        "title": "Copy to Clipboard",
+        "icon": "$(clippy)"
+      },
+      {
+        "command": "apple-container-helper.streamLogs",
+        "title": "Stream Logs",
+        "icon": "$(output)"
+      }
+    ],
+    "menus": {
+      "view/title": [
+        {
+          "command": "apple-container-helper.refreshContainers",
+          "when": "view == containerExplorer",
+          "group": "navigation@1"
+        },
+        {
+          "command": "apple-container-helper.refreshImages",
+          "when": "view == containerExplorer",
+          "group": "navigation@2"
+        },
+        {
+          "command": "apple-container-helper.toggleShowAllContainers",
+          "when": "view == containerExplorer",
+          "group": "navigation@3"
+        },
+        {
+          "command": "apple-container-helper.pruneImages",
+          "when": "view == containerExplorer",
+          "group": "1_management@1"
+        },
+        {
+          "command": "apple-container-helper.pullImage",
+          "when": "view == containerExplorer",
+          "group": "2_workspace@1"
+        },
+        {
+          "command": "apple-container-helper.buildImage",
+          "when": "view == containerExplorer",
+          "group": "2_workspace@2"
+        },
+        {
+          "command": "apple-container-helper.advancedRun",
+          "when": "view == containerExplorer",
+          "group": "2_workspace@3"
+        }
+      ],
+      "view/item/context": [
+        {
+          "command": "apple-container-helper.startContainer",
+          "when": "view == containerExplorer && viewItem =~ /container-(stopped|exited)/",
+          "group": "container@1"
+        },
+        {
+          "command": "apple-container-helper.stopContainer",
+          "when": "view == containerExplorer && viewItem =~ /container-running/",
+          "group": "container@1"
+        },
+        {
+          "command": "apple-container-helper.execInContainer",
+          "when": "view == containerExplorer && viewItem =~ /container-running/",
+          "group": "container@2"
+        },
+        {
+          "command": "apple-container-helper.containerLogs",
+          "when": "view == containerExplorer && viewItem =~ /container-/",
+          "group": "container@3"
+        },
+        {
+          "command": "apple-container-helper.streamLogs",
+          "when": "view == containerExplorer && viewItem =~ /container-/",
+          "group": "container@3"
+        },
+        {
+          "command": "apple-container-helper.showContainerDetails",
+          "when": "view == containerExplorer && viewItem =~ /container-/",
+          "group": "container@4"
+        },
+        {
+          "command": "apple-container-helper.inspectContainer",
+          "when": "view == containerExplorer && viewItem =~ /container-/",
+          "group": "container@5"
+        },
+        {
+          "command": "apple-container-helper.removeContainer",
+          "when": "view == containerExplorer && viewItem =~ /container-(stopped|exited)/",
+          "group": "dangerous@1"
+        },
+        {
+          "command": "apple-container-helper.forceRemoveContainer",
+          "when": "view == containerExplorer && viewItem =~ /container-running/",
+          "group": "dangerous@1"
+        },
+        {
+          "command": "apple-container-helper.runFromImage",
+          "when": "view == containerExplorer && viewItem == image",
+          "group": "image@1"
+        },
+        {
+          "command": "apple-container-helper.advancedRunFromImage",
+          "when": "view == containerExplorer && viewItem == image",
+          "group": "image@2"
+        },
+        {
+          "command": "apple-container-helper.inspectImage",
+          "when": "view == containerExplorer && viewItem == image",
+          "group": "image@3"
+        },
+        {
+          "command": "apple-container-helper.removeImage",
+          "when": "view == containerExplorer && viewItem == image",
+          "group": "dangerous@1"
+        },
+        {
+          "command": "apple-container-helper.copyToClipboard",
+          "when": "view == containerExplorer && viewItem =~ /container-detail-copy-/",
+          "group": "copy@1"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "Apple Container Helper",
+      "properties": {
+        "apple-container-helper.showInExplorer": {
+          "type": "boolean",
+          "default": true,
+          "description": "Show the container view in the Explorer sidebar"
+        },
+        "apple-container-helper.autoRefresh": {
+          "type": "number",
+          "default": 30,
+          "description": "Auto-refresh interval in seconds (0 to disable)"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "pnpm run package",
+    "compile": "webpack",
+    "watch": "webpack --watch",
+    "package": "webpack --mode production --devtool hidden-source-map",
+    "compile-tests": "tsc -p . --outDir out",
+    "watch-tests": "tsc -p . -w --outDir out",
+    "pretest": "pnpm run compile-tests && pnpm run compile && pnpm run lint",
+    "lint": "eslint src",
+    "test": "vscode-test"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.104.0",
+    "@types/mocha": "^10.0.10",
+    "@types/node": "22.x",
+    "@typescript-eslint/eslint-plugin": "^8.42.0",
+    "@typescript-eslint/parser": "^8.42.0",
+    "eslint": "^9.34.0",
+    "typescript": "^5.9.2",
+    "ts-loader": "^9.5.4",
+    "webpack": "^5.101.3",
+    "webpack-cli": "^6.0.1",
+    "@vscode/test-cli": "^0.0.11",
+    "@vscode/test-electron": "^2.5.2"
+  }
+}
